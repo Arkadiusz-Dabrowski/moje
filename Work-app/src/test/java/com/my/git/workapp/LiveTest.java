@@ -1,5 +1,6 @@
 package com.my.git.workapp;
 
+import com.my.git.workapp.model.Employer;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.bind.annotation.PostMapping;
 
