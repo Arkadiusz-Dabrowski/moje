@@ -13,20 +13,48 @@ public class EmployerController {
 
     @Autowired
     private EmployerRepository employerRepository;
+    @Autowired
+    EmployerMapper mapper;
 
     @GetMapping(value = "/all")
-    public Iterable findAll(){
-        return employerRepository.findAll();
+    public List<EmployerDto> findAll() {
+        return mapper.toEmployerDto(employerService.findAll());
     }
 
     @GetMapping(value = "{id}")
-    public Employer findById(@PathVariable("id") Long id){
-        return employerRepository.findById(id).orElseThrow(() -> new NotFoundException("Employer not found"));
+    public EmployerDto findById(@PathVariable("id") Long id) {
+        return mapper.toEmployerDto(employerService.findById(id));
     }
+    @GetMapping(value = "/{companyName}")
+    public EmployerDto findByCompanyName(@PathVariable("companyName")String companyName){
+        return mapper.toEmployerDto(employerService.getbycompanyName(companyName));
+    }
+
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public Employer save(@RequestBody Employer employer){
-        Employer employer1 = employerRepository.save(employer);
-        return employer1;
+    public Employer create(@RequestBody EmployerDto employerDto) {
+        return employerService.create(mapper.toEmployerEntity(employerDto));
+
     }
+
+    @PutMapping(value = "/{id}")
+    public void update(@PathVariable("id") Long id, @RequestBody EmployerDto newEmployer) {
+        try {
+            Employer employer = employerService.getOne(id);
+            employer.setCompanyName(newEmployer.getCompanyName());
+            employer.setEmail(newEmployer.getEmail());
+            employer.setPhoneNumber(newEmployer.getPhoneNumber());
+
+
+            employerService.create(employer);
+        } catch(EntityNotFoundException e){
+            e.printStackTrace(System.out.printf("Pracodawca o podanym id nie istnieje"));
+        }
+    }
+    @DeleteMapping
+    public void delate(Long id){
+        employerService.delateByID(id);
+    }
+
+
 }

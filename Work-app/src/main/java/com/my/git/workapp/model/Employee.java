@@ -1,22 +1,29 @@
 package com.my.git.workapp.model;
 
+import com.my.git.workapp.Gender;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+
 
 @Entity
 public class Employee {
     @Id
     @GeneratedValue
     private Long employee_id;
+    @Size(min = 2,max = 15)
     private String firstName;
+    @Size(min = 2,max = 15)
     private String secondName;
+    @Email(message = "email should be valid")
+    @Column(unique = true)
     private String email;
     private String phoneNumber;
-    private String gender;
-
-    public Employee() {
-    }
+    private Gender gender;
 
     public Long getEmployee_id() {
         return employee_id;
@@ -58,23 +65,23 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + employee_id +
+                "employee_id=" + employee_id +
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", gender='" + gender + '\'' +
+                ", gender=" + gender +
                 '}';
     }
 }

@@ -1,22 +1,21 @@
-package com.my.git.workapp.model;
+package com.my.git.workapp.dto;
 
 import com.my.git.workapp.RegionEnum;
+import com.my.git.workapp.model.Employer;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.ManyToOne;
+import java.time.Instant;
 import java.util.Date;
+
 @Getter
 @Setter
-@Entity
-public class Advertisement implements Serializable {
+@Component
+public class AdvertisementDto {
 
-    @Id
-    @GeneratedValue
-    private Long advertisement_id;
 
-    @Column(unique = true)
     private String title;
 
     private String Category;
@@ -27,9 +26,9 @@ public class Advertisement implements Serializable {
 
     private RegionEnum region;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "employer_id")
+    @ManyToOne
     private Employer employer;
+
 
     public Employer getEmployer() {
         return employer;
@@ -37,14 +36,6 @@ public class Advertisement implements Serializable {
 
     public void setEmployer(Employer employer) {
         this.employer = employer;
-    }
-
-    public Long getAdvertisement_id() {
-        return advertisement_id;
-    }
-
-    public void setAdvertisement_id(Long advertisement_id) {
-        this.advertisement_id = advertisement_id;
     }
 
     public String getTitle() {
@@ -67,8 +58,8 @@ public class Advertisement implements Serializable {
         return dateAdd;
     }
 
-    public void setDateAdd(Date dateAdd) {
-        this.dateAdd = dateAdd;
+    public final void setDateAdd(Date dateAdd) {
+        this.dateAdd = Date.from(Instant.now());
     }
 
     public Date getExpirationDate() {

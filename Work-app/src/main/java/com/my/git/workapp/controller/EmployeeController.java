@@ -15,18 +15,54 @@ public class EmployeeController {
     EmployeeRepository employeeRepository;
 
     @GetMapping(value = "/findall")
-    public Iterable findAll(){
-        return employeeRepository.findAll();
+    @GetMapping(value = "/employeelist")
+    public List<Employee> getAllEmployees() {
+        return employeeService.getEmployees();
     }
 
+
     @GetMapping(value = "{id}")
-    public Employee findById(@PathVariable("id") Long id){
-        return employeeRepository.findById(id).orElseThrow(() -> new NotFoundException("Employee not found by id:" + id));
+    public EmployeeDto findById(@PathVariable("id") Long id) {
+        return employeeMapper.employeeDto(employeeService.getById(id));
     }
+
+    @GetMapping(value = "{email}")
+    public EmployeeDto findByEmail(@PathVariable("{email") String email) {
+        return employeeMapper.employeeDto(employeeService.getByEmail(email));
+    }
+
+    @GetMapping(value = "{firstname}" + "{secondname}")
+    public EmployeeDto findByFirstAndSecond(@PathVariable("firstname") String firstName, @PathVariable("secondname") String secondName) {
+
+        return employeeMapper.employeeDto(employeeService.getEmployeeByFirsNameAndSecondName(firstName, secondName));
+    }
+
+    @DeleteMapping
+    public void delate(Long id) {
+        employeeService.delateById(id);
+    }
+
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public Employee create(@RequestBody Employee employee){
-        Employee employee1 = employeeRepository.save(employee);
-        return employee1;
+    @ResponseBody
+    public Employee create(@RequestBody EmployeeDto employeeDto) {
+        return employeeService.save(employeeMapper.toEmployeeEntity(employeeDto));
+    }
+
+    @PutMapping(value = "/{id}")
+    public void update(@PathVariable("id") Long id, @RequestBody EmployeeDto newEmployee) {
+        try {
+            Employee employee = employeeService.getOne(id);
+            employee.setFirstName(newEmployee.getFirstName());
+            employee.setSecondName(newEmployee.getSecondName());
+            employee.setEmail(newEmployee.getEmail());
+            employee.setPhoneNumber(newEmployee.getPhoneNumber());
+            employee.setGender(newEmployee.getGender());
+             employeeService.save(employee);
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace(System.out.printf("pacownik o podanym id nie istnieje"));
+        }
+
     }
 }
+
