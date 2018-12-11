@@ -1,24 +1,21 @@
 package com.my.git.workapp.dto;
 
 import com.my.git.workapp.RegionEnum;
-import com.my.git.workapp.model.Employer;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.ManyToOne;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
 @Setter
-@Component
 public class AdvertisementDto {
 
+    private  Long id;
 
     private String title;
 
-    private String Category;
+    private String category;
 
     private Date dateAdd;
 
@@ -26,16 +23,12 @@ public class AdvertisementDto {
 
     private RegionEnum region;
 
-    @ManyToOne
-    private Employer employer;
-
-
-    public Employer getEmployer() {
-        return employer;
+    public Long getId() {
+        return id;
     }
 
-    public void setEmployer(Employer employer) {
-        this.employer = employer;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -47,11 +40,11 @@ public class AdvertisementDto {
     }
 
     public String getCategory() {
-        return Category;
+        return category;
     }
 
     public void setCategory(String category) {
-        Category = category;
+        category = category;
     }
 
     public Date getDateAdd() {
@@ -59,7 +52,7 @@ public class AdvertisementDto {
     }
 
     public final void setDateAdd(Date dateAdd) {
-        this.dateAdd = Date.from(Instant.now());
+        this.dateAdd = dateAdd;
     }
 
     public Date getExpirationDate() {
@@ -77,4 +70,19 @@ public class AdvertisementDto {
     public void setRegion(RegionEnum region) {
         this.region = region;
     }
+
+    public AdvertisementDto() {
+        this.dateAdd = java.sql.Date.valueOf(LocalDate.now());
+    }
+
+    public AdvertisementDto(Long id,String title, String category, Date dateAdd, Date expirationDate, RegionEnum region) {
+        this.id = id;
+        this.title = title;
+        category = category;
+        this.dateAdd = java.sql.Date.valueOf(LocalDate.now());
+        this.expirationDate = expirationDate;
+        this.region = region;
+    }
 }
+
+

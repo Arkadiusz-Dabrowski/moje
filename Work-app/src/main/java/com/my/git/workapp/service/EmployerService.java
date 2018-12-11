@@ -1,11 +1,13 @@
 package com.my.git.workapp.service;
 
+import com.my.git.workapp.dto.EmployerDto;
 import com.my.git.workapp.exception.NotFoundException;
 import com.my.git.workapp.model.Employer;
 import com.my.git.workapp.repository.EmployerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +21,7 @@ public class EmployerService {
         this.employerRepository = employerRepository;
     }
 
-    public Employer getbycompanyName(String companyName) {
+    public Employer getByCompanyName(String companyName) {
          Employer employer = (Optional.ofNullable(employerRepository.getEmployerByCompanyName(companyName)).orElseThrow(() ->new  NotFoundException("Employer not found")));
          return employer;
     }
@@ -33,7 +35,7 @@ public class EmployerService {
     }
 
 
-    public Employer create(Employer employer) {
+    public Employer save(Employer employer) {
             return employerRepository.save(employer);
     }
 
@@ -48,5 +50,19 @@ public class EmployerService {
 
     public Employer getOne(Long id) {
         return employerRepository.getOne(id);
+    }
+
+    public void update(EmployerDto employerDto){
+        try {
+            Employer employer = getOne(employerDto.getId());
+            employer.setCompanyName(employerDto.getCompanyName());
+            employer.setEmail(employerDto.getEmail());
+            employer.setPhoneNumber(employerDto.getPhoneNumber());
+
+
+            save(employer);
+        } catch(EntityNotFoundException e){
+            e.printStackTrace(System.out.printf("Pracodawca o podanym id nie istnieje"));
+        }
     }
 }

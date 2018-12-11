@@ -1,12 +1,10 @@
 package com.my.git.workapp.dto;
 
 import com.my.git.workapp.Gender;
-import org.springframework.stereotype.Component;
 
-@Component
 public class EmployeeDto {
 
-
+    private Long id;
     private String firstName;
     private String secondName;
     private String email;
@@ -54,6 +52,11 @@ public class EmployeeDto {
         this.phoneNumber = phoneNumber;
     }
 
+    public Long getId() {
+        return id;
+    }
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

@@ -18,7 +18,7 @@ public class AdvertisementService {
 
     public List<Advertisement> getAdvertismentbyEmployerCN(String companyName) {
 
-        List<Advertisement> advertisements = advertisementRepository.getByEmployer(employerService.getbycompanyName(companyName));
+        List<Advertisement> advertisements = advertisementRepository.getByEmployer(employerService.getByCompanyName(companyName));
         return advertisements;
     }
 

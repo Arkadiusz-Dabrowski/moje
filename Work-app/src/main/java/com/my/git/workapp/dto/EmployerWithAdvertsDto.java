@@ -1,11 +1,14 @@
 package com.my.git.workapp.dto;
 
-public class EmployerDto {
+import java.util.List;
+
+public class EmployerWithAdvertsDto {
 
     private Long id;
     private String companyName;
     private String email;
     private String phoneNumber;
+    private List<AdvertisementDto> advertisementDtoList;
 
     public String getCompanyName() {
         return companyName;
@@ -37,5 +40,13 @@ public class EmployerDto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<AdvertisementDto> getAdvertisementDtoList() {
+        return advertisementDtoList;
+    }
+
+    public void setAdvertisementDtoList(List<AdvertisementDto> advertisementDtoList) {
+        this.advertisementDtoList = advertisementDtoList;
     }
 }

@@ -19,7 +19,7 @@ public class Advertisement implements Serializable {
     @Column(unique = true)
     private String title;
 
-    private String Category;
+    private String category;
 
     private Date dateAdd;
 
@@ -56,11 +56,11 @@ public class Advertisement implements Serializable {
     }
 
     public String getCategory() {
-        return Category;
+        return category;
     }
 
     public void setCategory(String category) {
-        Category = category;
+        category = category;
     }
 
     public Date getDateAdd() {

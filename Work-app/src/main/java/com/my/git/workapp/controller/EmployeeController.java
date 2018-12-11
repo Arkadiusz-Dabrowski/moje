@@ -1,20 +1,26 @@
 package com.my.git.workapp.controller;
 
-import com.my.git.workapp.exception.NotFoundException;
+import com.my.git.workapp.dto.EmployeeDto;
+import com.my.git.workapp.mapper.EmployeeMapper;
 import com.my.git.workapp.model.Employee;
-import com.my.git.workapp.repository.EmployeeRepository;
+import com.my.git.workapp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "employee")
 public class EmployeeController {
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    EmployeeService employeeService;
 
-    @GetMapping(value = "/findall")
+    @Autowired
+    EmployeeMapper employeeMapper;
+
     @GetMapping(value = "/employeelist")
     public List<Employee> getAllEmployees() {
         return employeeService.getEmployees();

@@ -1,14 +1,11 @@
 package com.my.git.workapp.model;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Component
 public class Employer implements Serializable {
     @Id
     @GeneratedValue
@@ -20,7 +17,7 @@ public class Employer implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "employer")
-    private List<Advertisement> advertisement= new ArrayList<>();
+    private List<Advertisement> advertisements = new ArrayList<>();
 
     public Long getEmployer_id() {
         return employer_id;
@@ -54,12 +51,18 @@ public class Employer implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Advertisement> getAdvertisement() {
-        return advertisement;
+    public List<Advertisement> getAdvertisements() {
+        return advertisements;
     }
 
-    public void setAdvertisement(List<Advertisement> advertisement) {
-        this.advertisement = advertisement;
+    public void setAdvertisements(List<Advertisement> advertisements) {
+        this.advertisements = advertisements;
+    }
+
+
+    public void addAdvertisement(Advertisement advertisement) {
+        this.advertisements.add(advertisement);
+        advertisement.setEmployer(this);
     }
 }
 
