@@ -28,17 +28,17 @@ public class EmployeeController {
 
 
     @GetMapping(value = "{id}")
-    public EmployeeDto findById(@PathVariable("id") Long id) {
+    public EmployeeDto getById(@PathVariable("id") Long id) {
         return employeeMapper.employeeDto(employeeService.getById(id));
     }
 
     @GetMapping(value = "{email}")
-    public EmployeeDto findByEmail(@PathVariable("{email") String email) {
+    public EmployeeDto getByEmail(@PathVariable("{email") String email) {
         return employeeMapper.employeeDto(employeeService.getByEmail(email));
     }
 
     @GetMapping(value = "{firstname}" + "{secondname}")
-    public EmployeeDto findByFirstAndSecond(@PathVariable("firstname") String firstName, @PathVariable("secondname") String secondName) {
+    public EmployeeDto getByFirstAndSecond(@PathVariable("firstname") String firstName, @PathVariable("secondname") String secondName) {
 
         return employeeMapper.employeeDto(employeeService.getEmployeeByFirsNameAndSecondName(firstName, secondName));
     }

@@ -25,17 +25,17 @@ public class EmployerController {
     EmployerMapper mapper;
 
     @GetMapping(value = "/all")
-    public List<EmployerDto> findAll() {
+    public List<EmployerDto> showList() {
         return mapper.toEmployerDto(employerService.findAll());
     }
 
     @GetMapping(value = "{id}")
-    public EmployerDto findById(@PathVariable("id") Long id) {
+    public EmployerDto getById(@PathVariable("id") Long id) {
         return mapper.toEmployerDto(employerService.findById(id));
     }
 
     @GetMapping(value = "/search")
-    public EmployerDto findByCompanyName(@RequestParam("companyName")String companyName, @RequestParam String city){//TODO change to request param
+    public EmployerDto getByCompanyName(@RequestParam("companyName")String companyName, @RequestParam String city){//TODO change to request param
         return mapper.toEmployerDto(employerService.getByCompanyName(companyName));
     }
 
@@ -50,8 +50,8 @@ public class EmployerController {
     public void update(@PathVariable("id") Long id, @RequestBody EmployerDto newEmployer) {
       employerService.update(newEmployer);
     }
-    @DeleteMapping
-    public void delate(Long id){
+    @DeleteMapping(value = "/delatebyid")
+    public void delateById(Long id){
         employerService.delateByID(id);
     }
 

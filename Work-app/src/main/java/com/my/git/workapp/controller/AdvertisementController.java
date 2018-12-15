@@ -35,7 +35,7 @@ public class AdvertisementController {
     AdvertisementService advertisementService;
 
 
-    @GetMapping(value = "/all/{sort}")
+    @GetMapping(value = "/all-sorted/{sort}")
     @ResponseBody
     public List<AdvertisementDto> showList(@PathVariable("sort") String sort) {//TODO change to RequestParam
         List<Advertisement> advertisements = advertisementService.getAdvertisementList(sort);
@@ -53,7 +53,7 @@ public class AdvertisementController {
 
     }
 
-    @PostMapping(value = "/create/{employer_id}")
+    @PostMapping(value = "/create/employer/{employer_id}")
     public EmployerWithAdvertsDto employerToAdvertisement(@PathVariable("employer_id") Long employer_Id, @RequestBody AdvertisementDto advertisementDto) {
         Employer employer = employerService.getOne(employer_Id);
         employer.addAdvertisement(mapper.toAdvertisementEntity(advertisementDto));
@@ -78,7 +78,7 @@ public class AdvertisementController {
     }
 
 
-    @DeleteMapping(value = "delatebyid/{title}")
+    @DeleteMapping(value = "delatebyid/{id}")
     public void delateById(@PathVariable(value = "id") Long id) {
         advertisementService.delateAdvertisement(id);
     }
