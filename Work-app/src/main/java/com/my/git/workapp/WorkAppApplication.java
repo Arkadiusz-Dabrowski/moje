@@ -9,7 +9,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan
 @SpringBootApplication
 public class WorkAppApplication {
+    
 
     public static void main(String[] args) {
-        SpringApplication.run(WorkAppApplication.class, args); }
+        SpringApplication.run(WorkAppApplication.class, args);
+
+
+
+
+        }
 }
+
