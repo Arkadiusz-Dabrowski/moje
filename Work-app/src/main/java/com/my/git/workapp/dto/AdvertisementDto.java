@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -17,9 +16,9 @@ public class AdvertisementDto {
 
     private String category;
 
-    private Date dateAdd;
+    private LocalDate dateAdd;
 
-    private Date expirationDate;
+    private LocalDate expirationDate;
 
     private RegionEnum region;
 
@@ -44,22 +43,22 @@ public class AdvertisementDto {
     }
 
     public void setCategory(String category) {
-        category = category;
+        this.category = category;
     }
 
-    public Date getDateAdd() {
+    public LocalDate getDateAdd() {
         return dateAdd;
     }
 
-    public final void setDateAdd(Date dateAdd) {
+    public final void setDateAdd(LocalDate dateAdd) {
         this.dateAdd = dateAdd;
     }
 
-    public Date getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 
@@ -72,14 +71,14 @@ public class AdvertisementDto {
     }
 
     public AdvertisementDto() {
-        this.dateAdd = java.sql.Date.valueOf(LocalDate.now());
+        this.dateAdd = LocalDate.now();
     }
 
-    public AdvertisementDto(Long id,String title, String category, Date dateAdd, Date expirationDate, RegionEnum region) {
+    public AdvertisementDto(Long id,String title, String category, LocalDate expirationDate, RegionEnum region) {
         this.id = id;
         this.title = title;
-        category = category;
-        this.dateAdd = java.sql.Date.valueOf(LocalDate.now());
+        this.category = category;
+        this.dateAdd = LocalDate.now();
         this.expirationDate = expirationDate;
         this.region = region;
     }

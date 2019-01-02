@@ -14,6 +14,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface EmployerMapper {
 
+    @Mapping(target = "id", source = "employer_id")
+
     EmployerDto toEmployerDto(Employer employer);
 
     abstract List<EmployerDto> toEmployerDto(Collection<Employer> employers);

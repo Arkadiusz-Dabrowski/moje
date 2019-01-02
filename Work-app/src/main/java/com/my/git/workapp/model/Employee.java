@@ -8,10 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 
 @Entity
-public class Employee {
+public class Employee implements Serializable {
     @Id
     @GeneratedValue
     private Long employee_id;

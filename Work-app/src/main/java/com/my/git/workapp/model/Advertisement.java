@@ -1,14 +1,11 @@
 package com.my.git.workapp.model;
 
 import com.my.git.workapp.RegionEnum;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-@Getter
-@Setter
+import java.time.LocalDate;
+
 @Entity
 public class Advertisement implements Serializable {
 
@@ -21,9 +18,9 @@ public class Advertisement implements Serializable {
 
     private String category;
 
-    private Date dateAdd;
+    private LocalDate dateAdd;
 
-    private Date expirationDate;
+    private LocalDate expirationDate;
 
     private RegionEnum region;
 
@@ -60,22 +57,22 @@ public class Advertisement implements Serializable {
     }
 
     public void setCategory(String category) {
-        category = category;
+        this.category = category;
     }
 
-    public Date getDateAdd() {
+    public LocalDate getDateAdd() {
         return dateAdd;
     }
 
-    public void setDateAdd(Date dateAdd) {
+    public void setDateAdd(LocalDate dateAdd) {
         this.dateAdd = dateAdd;
     }
 
-    public Date getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 

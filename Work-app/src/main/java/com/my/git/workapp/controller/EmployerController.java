@@ -29,13 +29,13 @@ public class EmployerController {
         return mapper.toEmployerDto(employerService.findAll());
     }
 
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/id/{id}")
     public EmployerDto getById(@PathVariable("id") Long id) {
         return mapper.toEmployerDto(employerService.findById(id));
     }
 
-    @GetMapping(value = "/search")
-    public EmployerDto getByCompanyName(@RequestParam("companyName")String companyName, @RequestParam String city){//TODO change to request param
+    @GetMapping(value = "/companyname/{companyName}")
+    public EmployerDto getByCompanyName(@PathVariable("companyName")String companyName){//TODO change to request param
         return mapper.toEmployerDto(employerService.getByCompanyName(companyName));
     }
 

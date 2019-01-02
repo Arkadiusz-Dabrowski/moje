@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Employee Manager</title>
+</head>
+<body ng-controller="EmployeeController as empControl">
+<a href="#!list">Homepage</a>
+<a href="#!new">Add New Book</a>
+<h1>{{empControl.appName}}</h1>
+<form>
+    <input type="text" ng-model="empControl.employee.firestName" placeholder="first name"><br>
+    <input type="text" ng-model="empControl.employee.secondName" placeholder="second name"><br>
+    <input type="text" ng-model="empControl.employee.phoneNumber" placeholder="phone number"><br>
+    <input type="text" ng-model="empControl.employee.email" placeholder="email"><br>
+    <input type="text" ng-model="empControl.employee.gender" placeholder="gender"><br>
+    <button ng-click="empControl.addEmployee(empControl.employee)">Add employee</button>
+</form>
+
+<ul>
+    <li ng-repeat="emp in empControl.employees" ng-click="empControl.loadData(emp.id)">
+        {{emp.firstName}} - {{emp.secondName}} {{emp.phoneNumber}} {{emp.phoneNumber}} {{emp.email}} {{emp.gender}}
+
+    </li>
+</ul>
+<div ng-show="empControl.details">
+    <h2>{{empControl.details.name}}</h2>
+    <p>First Name: {{empControl.details.firstName}}, Second Name: {{empControl.details.secondName}},
+        Second Name: {{empControl.details.phoneNumber}}, Second Name: {{empControl.details.email}},
+        Second Name: {{empControl.details.gender}}</p>
+</div>
+<script type="text/javascript" src = "static/bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="static/bower_components/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="static/js/app.js"></script>
+</body>
+</html>

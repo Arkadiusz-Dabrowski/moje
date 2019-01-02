@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,19 +34,19 @@ public class AdvertisementController {
     AdvertisementService advertisementService;
 
 
-    @GetMapping(value = "/all-sorted/{sort}")
+    @GetMapping(value = "/all")
     @ResponseBody
-    public List<AdvertisementDto> showList(@PathVariable("sort") String sort) {//TODO change to RequestParam
-        List<Advertisement> advertisements = advertisementService.getAdvertisementList(sort);
+    public List<AdvertisementDto> showList(@RequestParam(defaultValue="title")String orderBy) {//TODO change to RequestParam
+        List<Advertisement> advertisements = advertisementService.getAdvertisementList();
         return advertisements.stream().map(advertisement -> mapper.toAdvertisementDto(advertisement)).collect(Collectors.toList());
     }
 
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/id/{id}")
     public AdvertisementDto getById(@PathVariable("id") Long id) {
         return   mapper.toAdvertisementDto(advertisementService.getAdvertisementById(id));
     }
 
-    @GetMapping(value = "{company}")
+    @GetMapping(value = "/company/{company}")
     public List<AdvertisementDto> getByEmployer(@PathVariable("company") String companyName) {
         return mapper.toAdvertisementDto(advertisementService.getAdvertismentbyEmployerCN(companyName));
 
@@ -60,25 +59,14 @@ public class AdvertisementController {
         Employer savedEmployer = employerService.save(employer);
         return employerMapper.toEmplyerWithAdvertsDto(savedEmployer);
     }
-    @PutMapping(value = "/update")
+    @PutMapping(value = "/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    //TODO move all ids updates to Dtos
-    public void update( @RequestBody AdvertisementDto advertisementDto){
-        try {
-            Advertisement advertisement = advertisementService.getAdvertisementById(advertisementDto.getId());
-            advertisement.setCategory(advertisementDto.getCategory());
-            advertisement.setExpirationDate(advertisementDto.getExpirationDate());
-            advertisement.setRegion(advertisementDto.getRegion());
-            advertisement.setTitle(advertisementDto.getTitle());
-            advertisementService.createAdvertisement(advertisement);
-        }
-        catch(EntityNotFoundException e){
-            e.printStackTrace(System.out.printf("Ogłoszenie o podanym id nie istnieje"));
-        }
+    public void update(@PathVariable("id") Long id, @RequestBody AdvertisementDto newAdvertisement){
+        advertisementService.update(newAdvertisement,id);
     }
 
 
-    @DeleteMapping(value = "delatebyid/{id}")
+    @DeleteMapping(value = "/delatebyid/{id}")
     public void delateById(@PathVariable(value = "id") Long id) {
         advertisementService.delateAdvertisement(id);
     }

@@ -1,0 +1,21 @@
+{
+  "name": "workapp",
+  "homepage": "https://github.com/Arkadiusz-Dabrowski/moje",
+  "authors": [
+    "Arkadiusz.Dabrowski <arkadiusz.dabrowski1993@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.7.5",
+    "angular-resource": "^1.7.5"
+  }
+}
