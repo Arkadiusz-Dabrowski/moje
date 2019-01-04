@@ -19,7 +19,7 @@ Aplication is creating to learn Spring and to be part of my CV
 ![Employer Get](./radme/img/employer.get.jpg)
 ![Employer Post](./radme/img/employer.post.jpg)
 ![Advertisement Get](./radme/img/advertisement.get.jpg)
-![Advertisement Post](./radme/img/advertisement.post.jpg)
+![Advertisement Post](https://github.com/Arkadiusz-Dabrowski/moje/blob/master/RADME/img/advertisement.GET.jpg)
 
 
 ## Technologies
