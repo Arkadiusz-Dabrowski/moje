@@ -14,12 +14,12 @@ Work - App
 Aplication is creating to learn Spring and to be part of my CV
 
 ## Screenshots
-![Employee Get](./radme/img/employee.get.jpg)
-![Employee Post](./radme/img/employee.post.jpg)
-![Employer Get](./radme/img/employer.get.jpg)
-![Employer Post](./radme/img/employer.post.jpg)
-![Advertisement Get](./radme/img/advertisement.get.jpg)
-![Advertisement Post](https://github.com/Arkadiusz-Dabrowski/moje/blob/master/RADME/img/advertisement.GET.jpg)
+![Employee Get](https://github.com/Arkadiusz-Dabrowski/moje/blob/master/RADME/img/employee.GET.jpg)
+![Employee Post](https://github.com/Arkadiusz-Dabrowski/moje/blob/master/RADME/img/advertisement.POST.jpg)
+![Employer Get](https://github.com/Arkadiusz-Dabrowski/moje/blob/master/RADME/img/employer.GET.jpg)
+![Employer Post](https://github.com/Arkadiusz-Dabrowski/moje/blob/master/RADME/img/employer.POST.jpg)
+![Advertisement Get](https://github.com/Arkadiusz-Dabrowski/moje/blob/master/RADME/img/advertisement.GET.jpg)
+![Advertisement Post](https://github.com/Arkadiusz-Dabrowski/moje/blob/master/RADME/img/advertisement.POST.jpg)
 
 
 ## Technologies
