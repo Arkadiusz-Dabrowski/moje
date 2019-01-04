@@ -14,12 +14,12 @@ Work - App
 Aplication is creating to learn Spring and to be part of my CV
 
 ## Screenshots
-![Employee Get](./img/employee.get.jpg)
-![Employee Post](./img/employee.post.jpg)
-![Employer Get](./img/employer.get.jpg)
-![Employer Post](./img/employer.post.jpg)
-![Advertisement Get](./img/advertisement.get.jpg)
-![Advertisement Post](./img/advertisement.post.jpg)
+![Employee Get](./radme/img/employee.get.jpg)
+![Employee Post](./radme/img/employee.post.jpg)
+![Employer Get](./radme/img/employer.get.jpg)
+![Employer Post](./radme/img/employer.post.jpg)
+![Advertisement Get](./radme/img/advertisement.get.jpg)
+![Advertisement Post](./radme/img/advertisement.post.jpg)
 
 
 ## Technologies
