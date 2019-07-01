@@ -1,0 +1,55 @@
+entity User {
+	id Long,
+    name String,
+    secondName String,
+    role Role,
+    email String,
+    activated Boolean,
+    photos Photos,
+    activationCode String
+}
+
+entity Photos {
+	id Long,
+    photo Image
+}
+
+
+entity Message {
+	id Long,
+    topic String,
+    to User,
+    from User,
+    message String,
+    opened Boolean
+}
+
+
+
+enum Role {
+    Admin, Moderator, User
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Employee{photos} to Photos
+}
+
+relationship ManyToOne {
+	Photo{id} to Employee
+}
+
+// defining multiple oneToOne relationships
+
+// Set pagination options
+
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except 
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
